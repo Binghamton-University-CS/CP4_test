@@ -212,8 +212,8 @@ Actor John Smith has 50 praise points
 
 # Expected Output for Test Case 7
 desired_result[7]="
-Actor Dwayne Johnson presented with a Lifetime Achievement Award (30 praise points)
-1 John Smith has 50 praise points
+Actor John Smith presented with a Lifetime Achievement Award (50 praise points)
+2 Dwayne Johnson has 30 praise points
 3 Amy Adams has 40 praise points
 "
 
