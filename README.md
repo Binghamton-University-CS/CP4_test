@@ -1,4 +1,4 @@
-# test-helper files for CP3
+# test-helper files for CP4
 
 1. If utilizing Professor Lewis's main file, ensure that in the main function, the 'silent' parameter of **accept_commands(istream &is, bool silent, bool echo)** is set to **true**, and then proceed to compile.
     ```
