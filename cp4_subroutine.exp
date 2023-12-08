@@ -6,7 +6,7 @@
 # TCL expect
 
 if { [llength $argv] != 2 } {
-    puts "expect cp3_subroutine.exp <executable> <test-case-number>"
+    puts "expect cp4_subroutine.exp <executable> <test-case-number>"
     exit 1
 }
 
