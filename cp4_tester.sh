@@ -84,6 +84,88 @@ award_actor
 quit
 "
 
+# Test Case 6: Register multiple actors and praise one actor
+tests[6]="
+register_actor 1 Smith John
+register_actor 2 Johnson Dwayne
+praise_actor Smith 50
+show_praise
+quit
+"
+# The above test case checks if praising an actor updates the praise points correctly and if show_praise displays the correct information.
+
+# Test Case 7: Praise multiple actors and award the actor with the highest praise
+tests[7]="
+register_actor 1 Smith John
+register_actor 2 Johnson Dwayne
+register_actor 3 Adams Amy
+praise_actor Smith 50
+praise_actor Johnson 30
+praise_actor Adams 40
+award_actor
+show_praise
+quit
+"
+# The above test case checks if award_actor correctly identifies and awards the actor with the highest praise.
+
+# Test Case 8: Try to award an actor before any praise is given
+tests[8]="
+register_actor 1 Smith John
+award_actor
+show_praise
+quit
+"
+# The above test case checks if award_actor handles the scenario when no praise has been given.
+
+# Test Case 9: Praise an actor after awarding
+tests[9]="
+register_actor 1 Smith John
+praise_actor Smith 20
+award_actor
+praise_actor Smith 30
+show_praise
+quit
+"
+# The above  test case checks if an actor can be praised after being awarded and if the subsequent praise is ignored.
+
+# Test Case 10: Remove an actor and check if they are excluded from praise and award
+tests[10]="
+register_actor 1 Smith John
+register_actor 2 Johnson Dwayne
+praise_actor Smith 50
+remove_actor 2
+praise_actor Johnson 30
+award_actor
+show_praise
+quit
+"
+# The above test case checks if removing an actor excludes them from praise and award calculations.
+
+# Test Case 11: Remove a non-existing actor
+tests[11]="
+register_actor 1 Smith John
+remove_actor 2
+show_praise
+quit
+"
+# The above test case checks if removing a non-existing actor does not affect the existing actors.
+
+# Test Case 12: Mix of actor registration, praising, awarding, and removal
+tests[12]="
+register_actor 1 Smith John
+register_actor 2 Johnson Dwayne
+praise_actor Smith 20
+register_actor 3 Adams Amy
+praise_actor Johnson 30
+award_actor
+praise_actor Adams 40
+remove_actor 1
+praise_actor Adams 10
+show_praise
+quit
+"
+# The above test case combines various operations to test the overall functionality of the program.
+
 # DESIRED RESULTS
 declare -A desired_result
 
@@ -122,6 +204,43 @@ desired_result[5]="
 5 Amy Adams has 0 praise points
 < Should not be able praise Johnson (output message optional) >
 < Award anyone with 0 points, other than Johnson >
+"
+# Expected Output for Test Case 6
+desired_result[6]="
+Actor John Smith has 50 praise points
+"
+
+# Expected Output for Test Case 7
+desired_result[7]="
+Actor Dwayne Johnson presented with a Lifetime Achievement Award (30 praise points)
+1 John Smith has 50 praise points
+3 Amy Adams has 40 praise points
+"
+
+# Expected Output for Test Case 8
+desired_result[8]="
+Actor John Smith presented with a Lifetime Achievement Award (0 praise points).
+"
+
+# Expected Output for Test Case 9
+desired_result[9]="
+Actor John Smith presented with a Lifetime Achievement Award (20 praise points)
+"
+
+# Expected Output for Test Case 10
+desired_result[10]="
+Actor Dwayne Johnson has 0 praise points
+"
+
+# Expected Output for Test Case 11
+desired_result[11]="
+Actor John Smith has 50 praise points
+"
+
+# Expected Output for Test Case 12
+desired_result[12]="
+Actor Dwayne Johnson presented with a Lifetime Achievement Award (30 praise points)
+3 Amy Adams has 40 praise points
 "
 
 # INTERACTION
